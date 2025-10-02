@@ -1,7 +1,6 @@
 from crewai import Agent, Task, Crew, Process, LLM
 from crewai.project import CrewBase, agent, task, crew
-from mcp import StdioServerParameters
-from crewai_tools import MCPServerAdapter
+from src.mcp_tool import get_notion_mcp_tools
 from typing import List, Dict, Any
 import os
 
@@ -19,6 +18,7 @@ class ProjectManagementCrew:
             model="cerebras/llama3.3-70b",
             temperature=0.7
         )
+
     
     @agent
     def Planner(self) -> Agent:
@@ -43,27 +43,13 @@ class ProjectManagementCrew:
     @agent
     def Tracker(self) -> Agent:
         """Agent responsible for creating project tracking in Notion via MCP"""
-        server_params = StdioServerParameters(
-            command="docker",
-            args=[
-                "run",
-                "--rm",
-                "-i",
-                "-e", f"NOTION_TOKEN={os.getenv('NOTION_TOKEN', '')}",
-                "mcp/notion"
-            ],
-            env=os.environ.copy()
+        return Agent(
+            config=self.agents_config['Tracker'],
+            llm=self.llm,
+            tools=get_notion_mcp_tools(),
+            verbose=True,
+            allow_delegation=False
         )
-
-
-        with MCPServerAdapter(server_params, connect_timeout=60) as mcp_tools:
-            return Agent(
-                config=self.agents_config['Tracker'],
-                llm=self.llm,
-                tools=mcp_tools,
-                verbose=True,
-                allow_delegation=False
-            )
     
     @task
     def plan_project_task(self) -> Task:
@@ -78,8 +64,7 @@ class ProjectManagementCrew:
         """Task for reviewing and validating planned tasks"""
         return Task(
             config=self.tasks_config['review_tasks_task'],
-            agent=self.Reviewer(),
-            output_file='output/notion_tracking.json'
+            agent=self.Reviewer()
         )
     
     @task

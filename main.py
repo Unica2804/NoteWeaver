@@ -8,24 +8,9 @@ def main():
     
     # Sample project input
     project_input = {
-        "project_idea": """
-        Build an e-commerce platform with the following features:
-        - User authentication and authorization
-        - Product catalog with search and filtering
-        - Shopping cart and checkout system
-        - Payment integration (Stripe)
-        - Order management and tracking
-        - Admin dashboard for inventory management
-        - Email notifications
-        - Mobile responsive design
-        
-        Timeline: 3 months
-        Team size: 4 developers
-        """,
-        "project_name": "E-Commerce Platform",
-        "project_owner": "Tech Team Lead",
-        "start_date": "2025-10-15",
-        "end_date": "2026-01-15"
+        "project_idea": "Create a Notion-integrated project management tool using AI agents.",
+        "project_name": "AI-Notion Project Manager",
+        "project_description": "An AI-driven tool that helps users plan, review, and track their projects seamlessly within Notion."
     }
     
     print("🚀 Starting Agentic Project Management Workflow...")
