@@ -1,0 +1,27 @@
+plan_project_task:
+  description: >
+    Take a high-level project idea and break it down into actionable tasks and subtasks.
+    Include task names, descriptions, deadlines, priorities, and dependencies.
+  expected_output: >
+    A structured list of tasks and subtasks in JSON or dictionary format that can
+    be directly used for project tracking.
+  agent: Planner
+
+review_tasks_task:
+  description: >
+    Review the tasks created by the Planner Agent. Check for logical gaps,
+    missing dependencies, unrealistic timelines, or any inconsistencies.
+    Improve and validate the task list for clarity and feasibility.
+  expected_output: >
+    A validated and improved task list ready for project tracking,
+    including corrected dependencies and any added details.
+  agent: Reviewer
+
+create_tracking_task:
+  description: >
+    Use the Notion MCP to create a new database for project tracking.
+    Remember: titles and rich_text fields must always be arrays, not objects.
+  expected_output: >
+    A valid JSON payload that can be sent to Notion MCP API without validation errors.
+  agent: Tracker
+

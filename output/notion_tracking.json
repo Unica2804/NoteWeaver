@@ -1,0 +1,162 @@
+{
+    "Project": "Development of a New Web Application",
+    "Tasks": [
+        {
+            "Task Name": "Project Planning",
+            "Description": "Define project scope, goals, and timelines",
+            "Deadline": "2024-03-15",
+            "Priority": "High",
+            "Dependencies": null,
+            "Subtasks": [
+                {
+                    "Subtask Name": "Define Project Scope",
+                    "Description": "Identify key features and functionalities",
+                    "Deadline": "2024-03-05",
+                    "Priority": "High",
+                    "Dependencies": null
+                },
+                {
+                    "Subtask Name": "Create Project Timeline",
+                    "Description": "Establish milestones and deadlines",
+                    "Deadline": "2024-03-10",
+                    "Priority": "Medium",
+                    "Dependencies": "Define Project Scope"
+                },
+                {
+                    "Subtask Name": "Identify Project Resources",
+                    "Description": "Determine necessary personnel, equipment, and materials",
+                    "Deadline": "2024-03-12",
+                    "Priority": "Medium",
+                    "Dependencies": "Create Project Timeline"
+                }
+            ]
+        },
+        {
+            "Task Name": "Design",
+            "Description": "Create visual design and user interface",
+            "Deadline": "2024-04-05",
+            "Priority": "High",
+            "Dependencies": "Project Planning",
+            "Subtasks": [
+                {
+                    "Subtask Name": "Develop Wireframes",
+                    "Description": "Create low-fidelity sketches of the application",
+                    "Deadline": "2024-03-20",
+                    "Priority": "Medium",
+                    "Dependencies": null
+                },
+                {
+                    "Subtask Name": "Create High-Fidelity Design",
+                    "Description": "Develop visually appealing design concepts",
+                    "Deadline": "2024-03-30",
+                    "Priority": "High",
+                    "Dependencies": "Develop Wireframes"
+                },
+                {
+                    "Subtask Name": "Design Review and Revisions",
+                    "Description": "Gather feedback and make necessary design changes",
+                    "Deadline": "2024-04-03",
+                    "Priority": "Medium",
+                    "Dependencies": "Create High-Fidelity Design"
+                }
+            ]
+        },
+        {
+            "Task Name": "Front-end Development",
+            "Description": "Build client-side functionality",
+            "Deadline": "2024-05-10",
+            "Priority": "High",
+            "Dependencies": "Design",
+            "Subtasks": [
+                {
+                    "Subtask Name": "Write HTML and CSS",
+                    "Description": "Create structure and layout",
+                    "Deadline": "2024-04-10",
+                    "Priority": "Medium",
+                    "Dependencies": null
+                },
+                {
+                    "Subtask Name": "Implement JavaScript",
+                    "Description": "Add interactive functionality",
+                    "Deadline": "2024-04-25",
+                    "Priority": "High",
+                    "Dependencies": "Write HTML and CSS"
+                },
+                {
+                    "Subtask Name": "Front-end Testing and Debugging",
+                    "Description": "Test and resolve front-end issues",
+                    "Deadline": "2024-05-05",
+                    "Priority": "Medium",
+                    "Dependencies": "Implement JavaScript"
+                }
+            ]
+        },
+        {
+            "Task Name": "Back-end Development",
+            "Description": "Build server-side functionality",
+            "Deadline": "2024-06-15",
+            "Priority": "High",
+            "Dependencies": "Front-end Development",
+            "Subtasks": [
+                {
+                    "Subtask Name": "Choose Backend Framework",
+                    "Description": "Select suitable framework for the application",
+                    "Deadline": "2024-05-05",
+                    "Priority": "Medium",
+                    "Dependencies": null
+                },
+                {
+                    "Subtask Name": "Implement Backend Logic",
+                    "Description": "Write server-side code",
+                    "Deadline": "2024-05-25",
+                    "Priority": "High",
+                    "Dependencies": "Choose Backend Framework"
+                },
+                {
+                    "Subtask Name": "Back-end Testing and Debugging",
+                    "Description": "Test and resolve back-end issues",
+                    "Deadline": "2024-06-10",
+                    "Priority": "Medium",
+                    "Dependencies": "Implement Backend Logic"
+                }
+            ]
+        },
+        {
+            "Task Name": "Testing and Deployment",
+            "Description": "Test and deploy the application",
+            "Deadline": "2024-07-15",
+            "Priority": "High",
+            "Dependencies": "Back-end Development",
+            "Subtasks": [
+                {
+                    "Subtask Name": "Unit Testing",
+                    "Description": "Test individual components",
+                    "Deadline": "2024-06-10",
+                    "Priority": "Medium",
+                    "Dependencies": null
+                },
+                {
+                    "Subtask Name": "Integration Testing",
+                    "Description": "Test the entire application",
+                    "Deadline": "2024-06-25",
+                    "Priority": "High",
+                    "Dependencies": "Unit Testing"
+                },
+                {
+                    "Subtask Name": "Deploy Application",
+                    "Description": "Make the application available to users",
+                    "Deadline": "2024-07-10",
+                    "Priority": "High",
+                    "Dependencies": "Integration Testing"
+                },
+                {
+                    "Subtask Name": "Post-Deployment Review",
+                    "Description": "Evaluate application performance and gather user feedback",
+                    "Deadline": "2024-07-15",
+                    "Priority": "Medium",
+                    "Dependencies": "Deploy Application"
+                }
+            ]
+        }
+    ]
+}
