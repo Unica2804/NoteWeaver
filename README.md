@@ -4,7 +4,7 @@
 
 VaultMind is an intelligent research pipeline that combines AI agents, web search, and knowledge management to build your personal knowledge base automatically. Simply enter a topic, and watch as AI agents research, structure, and save professionally formatted notes to your Obsidian vault.
 
-![vaultmind_img](<Screenshot 2025-10-04 221053.png>)
+![vaultmind_img](<vaultmind_img.png>)
 
 ![VaultMind Banner](https://img.shields.io/badge/AI-Research-blue) ![License](https://img.shields.io/badge/license-MIT-green) ![Python](https://img.shields.io/badge/python-3.13-blue)
 
