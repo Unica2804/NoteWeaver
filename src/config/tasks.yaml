@@ -1,49 +1,56 @@
 research_task:
   description: >
     Research the topic: {topic}
-    
-    Break down the topic into key subtopics and conduct thorough research.
-    Search for reliable sources, extract key information, and gather relevant data.
-    
-    Your research should include:
-    1. Main concepts and definitions
-    2. Key points and important details
-    3. Examples and use cases
-    4. Related subtopics
-    5. References and sources
-    
+
+    MANDATORY: You MUST use the Serper search tool for EVERY piece of information.
+    DO NOT use your own knowledge. ONLY use information from web searches.
+
+    Step-by-step REQUIRED process:
+    1. FIRST: Search "{topic} overview" using Serper tool
+    2. SECOND: Search "{topic} key concepts" using Serper tool
+    3. THIRD: Search "{topic} examples" using Serper tool
+    4. FOURTH: Search "{topic} latest news" using Serper tool
+    5. Extract information ONLY from search results
+    6. Compile into JSON format with actual URLs from searches
+
+    YOU CANNOT SKIP THE SEARCHES. Every section must come from web search results.
+    Include the search result URLs in your references.
+
+    If you provide information without searching first, you have FAILED the task.
+
     Organize your findings in a structured JSON format with the following schema:
     {{
       "title": "Main topic title",
-      "summary": "Brief overview of the topic",
+      "summary": "Brief overview from search results",
       "sections": [
         {{
           "heading": "Section title",
-          "content": "Detailed content",
+          "content": "Content from web searches ONLY",
           "subsections": []
         }}
       ],
       "references": [
         {{
-          "title": "Source title",
-          "url": "Source URL",
-          "author": "Author name (if available)"
+          "title": "Source title from search",
+          "url": "Actual URL from Serper results",
+          "author": "Author if available"
         }}
       ],
       "tags": ["tag1", "tag2"],
       "related_topics": ["topic1", "topic2"]
     }}
   expected_output: >
-    A comprehensive JSON object containing structured research data with title, summary,
-    sections, references, suggested tags, and related topics.
+    A comprehensive JSON object with ALL content derived from Serper web searches.
+    Must include actual URLs from search results in references.
+    If no searches were performed, this task has FAILED.
   agent: research_agent
 
 markdown_conversion_task:
   description: >
     Convert the research data into a professional Markdown document.
-    
+
     Input: Structured research data in JSON format from the research agent
-    
+
     Create a well-formatted Markdown document with:
     1. A clear title (H1)
     2. A summary section at the top
@@ -53,7 +60,7 @@ markdown_conversion_task:
     6. Code blocks for technical content (if applicable)
     7. Properly formatted links and references section at the bottom
     8. Metadata section with tags
-    
+
     Follow these formatting rules:
     - Use ## for main sections
     - Use ### for subsections
@@ -63,7 +70,7 @@ markdown_conversion_task:
     - Use **bold** for emphasis on key terms
     - Use `inline code` for technical terms or commands
     - Add blank lines between sections for readability
-    
+
     The output should be clean & professional.
   expected_output: >
     A complete, well-formatted Markdown document as a string that follows best practices
@@ -73,34 +80,34 @@ markdown_conversion_task:
 obsidian_integration_task:
   description: >
     Integrate the Markdown document into the Obsidian vault using the available MCP tools.
-    
+
     Input: Formatted Markdown content from the markdown agent
-    
+
     IMPORTANT: You MUST use the Obsidian MCP tools available to you to complete this task.
-    
+
     Step-by-step process:
     1. Extract the title from the Markdown content to use as the note filename
     2. Determine the appropriate folder path based on the topic and tags
     3. USE THE MCP TOOL to create/update the note in Obsidian with the Markdown content
     4. USE THE MCP TOOL to apply tags to the note
     5. If the tool supports it, search for related notes and create backlinks
-    
+
     Folder organization rules:
     - Use topic-based folders (e.g., Technology/, Science/, Business/)
     - Create subfolders for related subtopics if needed
     - Place the note in the most specific relevant folder
     - Default to root folder if unsure
-    
+
     Tagging rules:
     - Extract tags from the Markdown metadata or research data
     - Use the format #tag-name
     - Include category tags (e.g., #research, #auto-generated)
-    
+
     Note creation:
     - Filename should be clean and descriptive (use the title from Markdown)
     - Include the full Markdown content in the note body
     - Ensure proper file path formatting (use forward slashes)
-    
+
     You MUST call the Obsidian MCP tools to save the note. Do not just describe what should be done.
   expected_output: >
     Using the MCP tools, create or update a note in the Obsidian vault with the
@@ -111,9 +118,9 @@ obsidian_integration_task:
 review_task:
   description: >
     Review the final Markdown document for quality, accuracy, and consistency.
-    
+
     Input: Formatted Markdown content and original research data
-    
+
     Check the following:
     1. **Accuracy**: Verify that the Markdown accurately represents the research data
     2. **Formatting**: Ensure consistent use of headers, lists, and other Markdown elements
@@ -122,13 +129,13 @@ review_task:
     5. **Citations**: Ensure all references are properly formatted and included
     6. **Grammar**: Check for any grammatical errors or typos
     7. **Structure**: Verify logical flow and proper heading hierarchy
-    
+
     Provide feedback with:
     - Overall quality score (1-10)
     - List of issues found (if any)
     - Suggestions for improvement
     - Approval status (approved/needs revision)
-    
+
     If the document needs revision, specify what changes are required.
   expected_output: >
     A quality assurance report with a quality score, list of any issues found,
