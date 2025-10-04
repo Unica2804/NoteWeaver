@@ -17,7 +17,10 @@ class Information_Gatherer_Crew:
 
     def __init__(self):
         """Initialize the crew with Cerebras LLM"""
-        self.llm = LLM(model="cerebras/llama-3.3-70b", temperature=0.5)
+        self.llm = LLM(
+            model="cerebras/llama-4-maverick-17b-128e-instruct",
+            temperature=0.3
+            )
 
     @agent
     def research_agent(self) -> Agent:
