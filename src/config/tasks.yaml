@@ -1,27 +1,136 @@
-plan_project_task:
+research_task:
   description: >
-    Take a high-level project idea and break it down into actionable tasks and subtasks.
-    Include task names, descriptions, deadlines, priorities, and dependencies.
+    Research the topic: {topic}
+    
+    Break down the topic into key subtopics and conduct thorough research.
+    Search for reliable sources, extract key information, and gather relevant data.
+    
+    Your research should include:
+    1. Main concepts and definitions
+    2. Key points and important details
+    3. Examples and use cases
+    4. Related subtopics
+    5. References and sources
+    
+    Organize your findings in a structured JSON format with the following schema:
+    {{
+      "title": "Main topic title",
+      "summary": "Brief overview of the topic",
+      "sections": [
+        {{
+          "heading": "Section title",
+          "content": "Detailed content",
+          "subsections": []
+        }}
+      ],
+      "references": [
+        {{
+          "title": "Source title",
+          "url": "Source URL",
+          "author": "Author name (if available)"
+        }}
+      ],
+      "tags": ["tag1", "tag2"],
+      "related_topics": ["topic1", "topic2"]
+    }}
   expected_output: >
-    A structured list of tasks and subtasks in JSON or dictionary format that can
-    be directly used for project tracking.
-  agent: Planner
+    A comprehensive JSON object containing structured research data with title, summary,
+    sections, references, suggested tags, and related topics.
+  agent: research_agent
 
-review_tasks_task:
+markdown_conversion_task:
   description: >
-    Review the tasks created by the Planner Agent. Check for logical gaps,
-    missing dependencies, unrealistic timelines, or any inconsistencies.
-    Improve and validate the task list for clarity and feasibility.
+    Convert the research data into a professional Markdown document.
+    
+    Input: Structured research data in JSON format from the research agent
+    
+    Create a well-formatted Markdown document with:
+    1. A clear title (H1)
+    2. A summary section at the top
+    3. Organized sections with proper heading hierarchy (H2, H3, etc.)
+    4. Bullet points and numbered lists where appropriate
+    5. Tables for comparative information (if applicable)
+    6. Code blocks for technical content (if applicable)
+    7. Properly formatted links and references section at the bottom
+    8. Metadata section with tags
+    
+    Follow these formatting rules:
+    - Use ## for main sections
+    - Use ### for subsections
+    - Use bullet points (-) for lists
+    - Use numbered lists (1., 2., 3.) for sequential steps
+    - Use > for important callouts or quotes
+    - Use **bold** for emphasis on key terms
+    - Use `inline code` for technical terms or commands
+    - Add blank lines between sections for readability
+    
+    The output should be clean & professional.
   expected_output: >
-    A validated and improved task list ready for project tracking,
-    including corrected dependencies and any added details.
-  agent: Reviewer
+    A complete, well-formatted Markdown document as a string that follows best practices
+    for technical documentation and is ready for integration into Obsidian.
+  agent: markdown_agent
 
-create_tracking_task:
+obsidian_integration_task:
   description: >
-    Use the Notion MCP to create a new database for project tracking.
-    Remember: titles and rich_text fields must always be arrays, not objects.
+    Integrate the Markdown document into the Obsidian vault using the available MCP tools.
+    
+    Input: Formatted Markdown content from the markdown agent
+    
+    IMPORTANT: You MUST use the Obsidian MCP tools available to you to complete this task.
+    
+    Step-by-step process:
+    1. Extract the title from the Markdown content to use as the note filename
+    2. Determine the appropriate folder path based on the topic and tags
+    3. USE THE MCP TOOL to create/update the note in Obsidian with the Markdown content
+    4. USE THE MCP TOOL to apply tags to the note
+    5. If the tool supports it, search for related notes and create backlinks
+    
+    Folder organization rules:
+    - Use topic-based folders (e.g., Technology/, Science/, Business/)
+    - Create subfolders for related subtopics if needed
+    - Place the note in the most specific relevant folder
+    - Default to root folder if unsure
+    
+    Tagging rules:
+    - Extract tags from the Markdown metadata or research data
+    - Use the format #tag-name
+    - Include category tags (e.g., #research, #auto-generated)
+    
+    Note creation:
+    - Filename should be clean and descriptive (use the title from Markdown)
+    - Include the full Markdown content in the note body
+    - Ensure proper file path formatting (use forward slashes)
+    
+    You MUST call the Obsidian MCP tools to save the note. Do not just describe what should be done.
   expected_output: >
-    A valid JSON payload that can be sent to Notion MCP API without validation errors.
-  agent: Tracker
+    Using the MCP tools, create or update a note in the Obsidian vault with the
+    provided Markdown content. The note should be saved with the correct filename,
+    in the appropriate folder, and with the correct tags applied.
+  agent: obsidian_mcp_agent
 
+review_task:
+  description: >
+    Review the final Markdown document for quality, accuracy, and consistency.
+    
+    Input: Formatted Markdown content and original research data
+    
+    Check the following:
+    1. **Accuracy**: Verify that the Markdown accurately represents the research data
+    2. **Formatting**: Ensure consistent use of headers, lists, and other Markdown elements
+    3. **Clarity**: Check that the content is clear, well-organized, and easy to understand
+    4. **Completeness**: Verify all sections from the research are included
+    5. **Citations**: Ensure all references are properly formatted and included
+    6. **Grammar**: Check for any grammatical errors or typos
+    7. **Structure**: Verify logical flow and proper heading hierarchy
+    
+    Provide feedback with:
+    - Overall quality score (1-10)
+    - List of issues found (if any)
+    - Suggestions for improvement
+    - Approval status (approved/needs revision)
+    
+    If the document needs revision, specify what changes are required.
+  expected_output: >
+    A quality assurance report with a quality score, list of any issues found,
+    suggestions for improvement, and final approval status.
+  agent: reviewer_agent
