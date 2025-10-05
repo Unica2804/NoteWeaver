@@ -17,10 +17,7 @@ class Information_Gatherer_Crew:
 
     def __init__(self):
         """Initialize the crew with Cerebras LLM"""
-        self.llm = LLM(
-            model="cerebras/llama-4-maverick-17b-128e-instruct",
-            temperature=0.3
-            )
+        self.llm = LLM(model="cerebras/gpt-oss-120b", temperature=0.3)
 
     @agent
     def research_agent(self) -> Agent:
@@ -54,15 +51,15 @@ class Information_Gatherer_Crew:
             allow_delegation=False,
         )
 
-    @agent
-    def reviewer_agent(self) -> Agent:
-        """Agent responsible for reviewing and validating project plans"""
-        return Agent(
-            config=self.agents_config["reviewer_agent"],
-            llm=self.llm,
-            verbose=False,
-            allow_delegation=False,
-        )
+    # @agent
+    # def reviewer_agent(self) -> Agent:
+    #     """Agent responsible for reviewing and validating project plans"""
+    #     return Agent(
+    #         config=self.agents_config["reviewer_agent"],
+    #         llm=self.llm,
+    #         verbose=False,
+    #         allow_delegation=False,
+    #     )
 
     @task
     def research_task(self) -> Task:
@@ -88,12 +85,12 @@ class Information_Gatherer_Crew:
             agent=self.obsidian_mcp_agent(),
         )
 
-    @task
-    def review_task(self) -> Task:
-        """Task for reviewing and validating project plans"""
-        return Task(
-            config=self.tasks_config["review_task"], agent=self.reviewer_agent()
-        )
+    # @task
+    # def review_task(self) -> Task:
+    #     """Task for reviewing and validating project plans"""
+    #     return Task(
+    #         config=self.tasks_config["review_task"], agent=self.reviewer_agent()
+    #     )
 
     @crew
     def crew(self) -> Crew:

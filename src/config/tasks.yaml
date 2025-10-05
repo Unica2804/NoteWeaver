@@ -114,30 +114,29 @@ obsidian_integration_task:
     provided Markdown content. The note should be saved with the correct filename,
     in the appropriate folder, and with the correct tags applied.
   agent: obsidian_mcp_agent
+# review_task:
+#   description: >
+#     Review the final Markdown document for quality, accuracy, and consistency.
 
-review_task:
-  description: >
-    Review the final Markdown document for quality, accuracy, and consistency.
+#     Input: Formatted Markdown content and original research data
 
-    Input: Formatted Markdown content and original research data
+#     Check the following:
+#     1. **Accuracy**: Verify that the Markdown accurately represents the research data
+#     2. **Formatting**: Ensure consistent use of headers, lists, and other Markdown elements
+#     3. **Clarity**: Check that the content is clear, well-organized, and easy to understand
+#     4. **Completeness**: Verify all sections from the research are included
+#     5. **Citations**: Ensure all references are properly formatted and included
+#     6. **Grammar**: Check for any grammatical errors or typos
+#     7. **Structure**: Verify logical flow and proper heading hierarchy
 
-    Check the following:
-    1. **Accuracy**: Verify that the Markdown accurately represents the research data
-    2. **Formatting**: Ensure consistent use of headers, lists, and other Markdown elements
-    3. **Clarity**: Check that the content is clear, well-organized, and easy to understand
-    4. **Completeness**: Verify all sections from the research are included
-    5. **Citations**: Ensure all references are properly formatted and included
-    6. **Grammar**: Check for any grammatical errors or typos
-    7. **Structure**: Verify logical flow and proper heading hierarchy
+#     Provide feedback with:
+#     - Overall quality score (1-10)
+#     - List of issues found (if any)
+#     - Suggestions for improvement
+#     - Approval status (approved/needs revision)
 
-    Provide feedback with:
-    - Overall quality score (1-10)
-    - List of issues found (if any)
-    - Suggestions for improvement
-    - Approval status (approved/needs revision)
-
-    If the document needs revision, specify what changes are required.
-  expected_output: >
-    A quality assurance report with a quality score, list of any issues found,
-    suggestions for improvement, and final approval status.
-  agent: reviewer_agent
+#     If the document needs revision, specify what changes are required.
+#   expected_output: >
+#     A quality assurance report with a quality score, list of any issues found,
+#     suggestions for improvement, and final approval status.
+#   agent: reviewer_agent
