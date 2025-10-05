@@ -22,12 +22,6 @@ VaultMind is an intelligent research pipeline that combines AI agents, web searc
 
 ---
 
-## 🎥 Demo
-
-<video controls src="resources/Demo.mp4" title="Title"></video>
-
----
-
 ## 🏗️ Architecture
 
 ```
